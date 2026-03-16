@@ -41,15 +41,6 @@ Every Monday, a new Anchor program is published here. All programs are built usi
 - **Final results**: Published the following Monday alongside the new program announcement
 - **Late submissions**: Not accepted. The deadline is hard.
 
-### How to Enter
-
-To participate in any week's competition, you **must**:
-
-1. **Repost** the Monday announcement post on X
-2. **Comment** under the announcement post confirming your participation
-3. **Submit** your findings as GitHub Issues in this repo before the deadline
-
-No repost + comment = your submission won't be scored. This helps grow the community and ensures every researcher is publicly committed.
 
 ---
 
