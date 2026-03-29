@@ -1,6 +1,10 @@
 # Security Audit: StakeFlow Protocol
 17.03.26 - 22.03.26
 
+## Acknowledgements
+The report is written by [die-kreatur](https://github.com/die-kreatur). It was published before Frank Castle's official judging and represents an independent analysis. 
+Since all findings were public, the author reviewed submissions from other participants and included the most notable ones from [0xsophon](https://github.com/0xsophon) and [4Nescient](https://github.com/4Nescient).
+
 ## Overview
 _Framework: Anchor 0.32 · Token-2022 compatible_
 
