@@ -1,4 +1,4 @@
-# ⚔️ Solana Audit Arena
+# Solana Audit Arena
 
 **A weekly Solana smart contract security competition — by [Frank Castle](https://x.com/0xcastle_chain)**
 
@@ -6,11 +6,11 @@
 
 ## What Is This?
 
-The Solana Audit Arena is a free, open, weekly competition where security researchers audit AI-generated Solana programs to find as many vulnerabilities as they can.
+The Solana Audit Arena is an open, weekly competition where security researchers audit Solana programs to find as many vulnerabilities as they can.
 
-Every Monday, a new Anchor program is published here. All programs are built using the [Safe Solana Builder](https://github.com/Frankcastleauditor/safe-solana-builder) — a security-focused Solana program generator that enforces safe patterns and audit-derived rules. You have **one week** to find bugs, write a PoC, and submit your findings as a GitHub Issue. The community reviews and discusses every submission publicly. Frank Castle — an expert Solana security researcher with 100+ protocol audits — makes the final call on validity and severity.
+Every Monday, a new Anchor program is published here. programs are built using the [Safe Solana Builder](https://github.com/Frankcastleauditor/safe-solana-builder) — a security-focused Solana program generator that enforces safe patterns and audit-derived rules. You have **one week** to find bugs, write a PoC, and submit your findings as a GitHub Issue. The community reviews and discusses every submission publicly. Frank Castle, who is an expert Solana security researcher with 100+ protocol audits, makes the final call on validity and severity.
 
-**This exists because junior security researchers deserve a proving ground.** There's no clear path for newcomers to sharpen their skills against realistic Solana codebases, compete on merit, and get noticed. This arena is that path.
+**This exists because security researchers deserve a proving ground.** There's no clear path for newcomers to sharpen their skills against realistic Solana codebases, compete on merit, and get noticed. This arena is that path.
 
 ---
 
