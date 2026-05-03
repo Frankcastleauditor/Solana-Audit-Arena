@@ -1,0 +1,40 @@
+[package]
+name = "stake_v2"
+version = "0.1.0"
+description = "Created with Anchor"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "stake_v2"
+
+[features]
+default = []
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+idl-build = ["anchor-lang-v2/idl-build", "yield_generator/idl-build"]
+
+[dependencies]
+anchor-lang-v2 = { git = "https://github.com/solana-foundation/anchor.git", branch = "anchor-next", default-features = false, features = ["alloc"] }
+anchor-spl-v2 = { git = "https://github.com/solana-foundation/anchor.git", branch = "anchor-next", default-features = false }
+pinocchio = { version = "0.11", default-features = false, features = ["copy"] }
+pinocchio-system = "0.6"
+bytemuck = { version = "1", features = ["derive"] }
+borsh = { version = "1" }
+wincode = { version = "0.5", features = ["derive"] }
+solana-program-log = { version = "1.1", features = ["macro"] }
+solana-program-error = { version = "3.0", features = ["borsh"] }
+yield_generator = { path = "../yield_generator", features = ["cpi"] }
+
+[dev-dependencies]
+litesvm = "0.11.0"
+solana-keypair = "3.0.1"
+solana-message = "3.0.1"
+solana-signer = "3.0.0"
+solana-transaction = "3.0.2"
+
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }
