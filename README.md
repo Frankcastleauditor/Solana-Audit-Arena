@@ -1,54 +1,60 @@
 # Solana Audit Arena
 
-**A weekly Solana smart contract security competition — by [Frank Castle](https://x.com/0xcastle_chain)**
+Weekly Solana smart contract security competition. Run by [Frank Castle](https://x.com/0xcastle_chain).
 
 ---
 
-## What Is This?
+## What it is
 
-The Solana Audit Arena is an open, weekly competition where security researchers audit Solana programs to find as many vulnerabilities as they can.
+A new program drops here every Monday. You get one week to break it.
 
-Every Monday, a new Anchor program is published here. programs are built using the [Safe Solana Builder](https://github.com/Frankcastleauditor/safe-solana-builder) — a security-focused Solana program generator that enforces safe patterns and audit-derived rules. You have **one week** to find bugs, write a PoC, and submit your findings as a GitHub Issue. The community reviews and discusses every submission publicly. Frank Castle, who is an expert Solana security researcher with 100+ protocol audits, makes the final call on validity and severity.
+Each bug goes in as a GitHub Issue with a working PoC. Everything is public. The community picks apart every submission, and I make the final call on validity and severity.
 
-**This exists because security researchers deserve a proving ground.** There's no clear path for newcomers to sharpen their skills against realistic Solana codebases, compete on merit, and get noticed. This arena is that path.
-
----
-
-## Why Participate?
-
-- **Build your audit track record** with verified findings on a public leaderboard
-- **Learn from real vulnerability patterns** across DeFi, staking, governance, stablecoins, and more
-- **Get community feedback** — every submission is publicly reviewed and discussed
-- **Get noticed** — top performers get highlighted on Frank Castle's X (4k+ security-focused followers)
-- **Top prize**: The leading researcher gets **invited to join a private audit engagement with Frank Castle** — real paid work, real experience, real credential.
+Free. No application. You get judged on what you find.
 
 ---
 
-## How It Works
+## Why it exists
 
-### Weekly Cycle
+Plenty of people in Solana can find bugs. Very few have anything public to point at.
 
-| Day | What Happens |
+Protocols can't tell who is real. Contest platforms help, but they favor researchers who already have time, tooling, and a name.
+
+This is the other door. A realistic codebase every week, a public verdict on your work, and a track record at a URL you can send to anyone.
+
+---
+
+## The targets
+
+Hand written by engineers who audit Solana for a living. Nothing generated. Nothing recycled from old CTF repos.
+
+Every week models something the ecosystem is shipping right now. Agent infrastructure. Delegated spend rails. Launchpads and bonding curves. Token-2022 flows. Staking and vaults. Mixed on-chain and off-chain settlement.
+
+The code reads like a funded team wrote it on a deadline. Full instruction sets, real account structures, real state machines. Bugs sit where they sit in production, not where a tutorial would put them.
+
+I design most weeks. Some go to guest designers from established Solana security teams, announced with the target, so you always know who wrote the code you are attacking.
+
+Difficulty climbs. Early weeks reward pattern recognition. Later ones get quiet.
+
+---
+
+## The cycle
+
+| Day | What happens |
 |-----|-------------|
-| **Monday** | New program published → Announcement post on X with link to this repo |
-| **Monday–Sunday** | Open submission window → Submit findings as GitHub Issues |
-| **Following Monday** | Frank validates, scores, and posts results on X → New program announced |
+| **Monday** | New target published, announced on X |
+| **Monday to Sunday** | Submission window, findings go in as GitHub Issues |
+| **Following Monday** | Results scored and posted on X, next target drops |
 
-### Timeline
-
-- **Submission window**: Monday 00:00 UTC → Sunday 23:59 UTC (7 full days)
-- **Community review**: Ongoing — anyone can comment on any submission during and after the window
-- **Final results**: Published the following Monday alongside the new program announcement
-- **Late submissions**: Not accepted. The deadline is hard.
-
+Window closes Sunday 23:59 UTC. The deadline is hard. Late submissions do not count.
 
 ---
 
-## Submission Format
+## Submitting
 
-Submit each finding as a **separate GitHub Issue** in this repository.
+One Issue per finding.
 
-### Issue Title Format
+**Title:**
 
 ```
 [Week X] [Severity] Short descriptive title
@@ -56,173 +62,123 @@ Submit each finding as a **separate GitHub Issue** in this repository.
 
 Example: `[Week 3] [Critical] Unauthorized withdrawal via missing signer check in unstake()`
 
-### Issue Body Template
-
-Use this template exactly — issues that don't follow the format will be tagged `invalid-format` and won't be scored until corrected (eating into your submission window).
+**Body:** use this template. Anything else gets labeled `invalid-format` and is not scored until you fix it, which costs you time you do not have.
 
 ```markdown
 ## Finding
 
 **Week**: [NUMBER]
-**Researcher**: [Your GitHub handle + X handle]
+**Researcher**: [GitHub handle + X handle]
 **Severity**: [Critical / High / Medium / Low / Informational]
-**Category**: [e.g., Missing signer check, Arithmetic overflow, PDA seed collision, CPI validation, etc.]
-**Affected function**: [instruction name or function]
+**Category**: [Missing signer check, arithmetic overflow, PDA seed collision, CPI validation, etc.]
+**Affected function**: [instruction or function name]
 
 ## Description
 
-[Clear explanation of the vulnerability — what's wrong and why it matters]
+What is wrong, and why it matters.
 
 ## Impact
 
-[What can an attacker do? Quantify if possible — e.g., "drain all vault funds", "bypass admin check"]
+What can an attacker do? Be specific. "Drain the vault" beats "could be risky".
 
 ## Proof of Concept
 
-- REQUIRED
+REQUIRED. One of:
+- A TypeScript or Rust test that triggers the bug
+- A step by step transaction sequence with account setups
+- A code diff showing the exploit path, expected vs actual
 
-[Provide a concrete PoC that demonstrates the exploit. This can be:]
-- A TypeScript/Rust test that triggers the vulnerability
-- A step-by-step transaction sequence with account setups
-- A code diff showing the exact exploit path with expected vs actual behavior
-
-[The PoC must be detailed enough that someone can independently verify the vulnerability without guesswork.]
+Detailed enough that someone else can verify it without guessing.
 
 ## Recommended Fix
 
-[How to patch it — include code if possible]
+How to patch it. Code if you have it.
 ```
 
-### Issue Labels
+---
 
-Issues will be labeled by Frank Castle during judging:
+## Rules
 
-| Label | Meaning |
-|-------|---------|
-| `valid` | Confirmed vulnerability, scored |
-| `invalid` | Not a real vulnerability |
-| `duplicate` | Same finding submitted earlier by another researcher |
-| `invalid-format` | Doesn't follow the submission template |
-| `critical` / `high` / `medium` / `low` | Final severity assigned by judge |
-| `best-find` | Best finding of the week |
-| `week-N` | Which week the finding belongs to |
+1. One bug per Issue. Do not bundle.
+2. PoC or it is not a finding. "This looks wrong" does not count.
+3. Solo entries. Coordinating submissions gets you disqualified.
+4. AI and scanners are fine as a starting point. Pasted raw output is not. You explain it, you prove it.
+5. No edits to the Issue body after you submit. Add a comment instead.
 
 ---
 
-## Community Review
+## Judging
 
-**Every submission is public.** This is intentional.
+Mine. Informed by what the community says in the comments.
 
-- **Anyone** can comment on any GitHub Issue — challenge the severity, question the PoC, suggest a better fix, or confirm the finding
-- Community discussion is encouraged and helps everyone learn
-- Comments do **not** affect scoring — only Frank Castle's final judgment determines points
-- Be constructive. Tearing down someone's submission without explanation is not helpful
-- If you find that someone's PoC doesn't actually work, explain why — that's valuable feedback
+I have audited 100+ protocols and found 300+ high and critical severity bugs. Past work with Spearbit (Senior Researcher), Cantina, and Pashov Audit Group.
 
-### Why Public Submissions?
+**Severity**
 
-1. **Transparency** — everyone can see how findings are judged
-2. **Learning** — reading other researchers' submissions teaches you new patterns
-3. **Accountability** — PoCs are verified by the community, not just one person
-4. **Archive** — the Issues tab becomes a searchable database of Solana vulnerability patterns
+- **Critical** (10 pts): direct loss of funds, protocol takeover, or permanent freeze. No preconditions beyond a normal transaction.
+- **High** (7 pts): real fund loss under specific but realistic conditions, privilege escalation, or a bypass of core access control.
+- **Medium** (3 pts): limited loss, denial of service, or state corruption with bounded impact.
+- **Low** (1 pt): minor issues and best practice violations. No fund loss.
+- **Informational** (0 pts): code quality, docs, theoretical issues with no attack path.
 
----
+**Scoring**
 
-## Scoring
+- First finder takes the points. Duplicates score zero, decided by Issue timestamp. Submit when you are sure. Waiting costs you.
+- My severity call is final, after reading the discussion.
+- Clear false positives with no analysis cost you 1 point. A reasoned finding that turns out invalid costs you nothing.
+- Behavior the target brief documents as intentional is not a finding.
 
-| Severity | Points |
-|----------|--------|
-| Critical | 10 |
-| High | 7 |
-| Medium | 3 |
-| Low | 1 |
-| Informational | 0 (acknowledged but no points) |
+**Labels**
 
-### Severity Definitions
-
-- **Critical**: Direct loss of funds, total protocol takeover, or permanent freeze of all assets. No preconditions beyond a normal transaction.
-- **High**: Significant loss of funds under specific but realistic conditions, privilege escalation, or bypass of core access control.
-- **Medium**: Limited fund loss, denial of service, or state corruption that requires specific conditions or has a bounded impact.
-- **Low**: Minor issues, best-practice violations, or gas optimizations that do not lead to fund loss.
-- **Informational**: Code quality suggestions, documentation gaps, or theoretical issues with no practical attack path.
-
-### Scoring Rules
-
-- **First finder gets full points.** If multiple researchers report the same vulnerability, only the first valid submission (by GitHub Issue timestamp) earns points. Duplicates are labeled `duplicate` and score 0.
-- **PoC is mandatory.** Submissions without a working Proof of Concept will be labeled `invalid-format` and won't be scored. No exceptions — if you can't prove it, it's not a finding.
-- **Severity is final.** Frank Castle assigns the final severity after considering community discussion. The classification stands for scoring purposes.
-- **Invalid findings**: Submitting findings that are clearly not vulnerabilities (false positives with no analysis) may result in a -1 point penalty per invalid finding to discourage spam. Use judgment — when in doubt, explain your reasoning and it won't count against you.
+`valid` · `invalid` · `duplicate` · `invalid-format` · `critical` · `high` · `medium` · `low` · `best-find` · `week-N`
 
 ---
 
-## Submission Rules
+## Everything is public
 
-1. **One Issue per finding.** Don't bundle multiple vulnerabilities into one Issue. Each vulnerability gets its own Issue with its own PoC.
-2. **Individual only.** No team submissions. You can discuss general Solana security concepts publicly, but coordinating submissions is grounds for disqualification.
-3. **Original work only.** Running the program through an automated scanner and pasting raw output is not accepted. You must demonstrate understanding in your description and provide a real PoC.
-4. **PoC required.** Every submission must include a Proof of Concept that independently verifies the vulnerability. "This looks wrong" is not a finding. "Here's exactly how to exploit it" is.
-5. **No editing after submission.** Once you submit an Issue, do not edit the body. If you need to add context, add a comment. Edits to the original Issue body after submission may result in disqualification for that finding.
+On purpose.
+
+Anyone can comment on any Issue. Challenge the severity, question the PoC, suggest a better fix, confirm a finding. Comments do not move the score, but they do shape my read.
+
+If a PoC does not work, say so and explain why. Go after the work, not the person.
+
+Reading other people's submissions will teach you more patterns than any tutorial. Over time the Issues tab becomes a searchable archive of Solana bug classes.
 
 ---
 
 ## Leaderboard
 
-The **all-time leaderboard** is maintained in [`LEADERBOARD.md`](./LEADERBOARD.md) in this repository and updated every Monday with the week's results.
+Standings live in [`LEADERBOARD.md`](./LEADERBOARD.md), updated every Monday.
 
-
-### Highlights
-
-Each week, the results post on X will feature:
-- **Top 3 researchers** of the week
-- **Best finding** of the week (most creative or impactful)
-- **Rising researcher** — biggest improvement from a newer participant
+The weekly results post on X features the top 3, the best finding, and the strongest move from a newer researcher. My audience is Solana researchers, auditors, and protocol teams. That visibility is the point.
 
 ---
 
+## Seasons and rewards
 
-## Judging
+The Arena runs in seasons. Each season has its own standings and its own rewards, announced before it starts.
 
-All submissions receive their **final judgment** from **Frank Castle** ([@0xcastle_chain](https://x.com/0xcastle_chain)), informed by community discussion.
-
-Frank has audited 100+ protocols and 50+ Solana programs, identifying 300+ high and critical severity vulnerabilities. Previous engagements include Cantina, Spearbit (Senior Researcher), and Pashov Audit Group.
+Want to sponsor a season or design a guest week? Find me on X.
 
 ---
-
 
 ## FAQ
 
-**Q: I'm a complete beginner. Can I participate?**
-A: Absolutely. That's who this is for. You'll learn more from one week of trying to break a real program than from months of tutorials. Even if you find 0 bugs your first week, you'll learn from reading other people's submissions.
+**New to Solana security. Should I bother?**
+Yes. One week of trying to break a real program beats months of reading. Even a week with zero findings pays off if you read what everyone else submitted.
 
-**Q: Do I need to be a Rust expert?**
-A: You need to be able to read Rust and understand Solana's account model. If you can follow an Anchor program's logic, you're ready.
+**How much Rust do I need?**
+Enough to read it. If you can follow a Solana program and you understand the account model, you are ready.
 
-**Q: Is there a cost to participate?**
-A: No. Free. Always.
+**Can I use AI?**
+As a starting point, yes. You still have to validate it, explain it in your own words, and ship a PoC that runs.
 
-**Q: Can I use AI tools to help me audit?**
-A: Yes — but you must understand and validate every finding you submit. Raw scanner output without analysis will be rejected. If you use AI as a starting point and then verify and explain the finding yourself, that's fair game. Your PoC still needs to work.
-
-**Q: Will programs get harder over time?**
-A: Yes. Early programs will have more obvious bugs. As the community levels up, so will the complexity.
-
-**Q: How do I get the "join a private audit" prize?**
-A: Be the leading researcher on the all-time leaderboard at evaluation points (announced in advance). This isn't just about points — consistency, finding quality, and demonstrated growth all factor in.
-
-**Q: Won't public submissions let people copy each other?**
-A: Timestamps matter. First valid submission gets the points. If someone submits after you with the same finding, they get labeled `duplicate`. This actually rewards speed and confidence — submit when you're sure, don't wait.
-
-**Q: Can I comment on other people's submissions?**
-A: Yes — that's the point. Community review makes everyone better. Challenge PoCs, suggest better fixes, confirm findings. Just be constructive.
+**Won't people copy my finding?**
+Timestamps decide. First valid submission scores. Later copies get marked duplicate.
 
 ---
 
 ## Links
 
-- **X**: [@0xcastle_chain](https://x.com/0xcastle_chain)
-- **GitHub**: [Frankcastleauditor](https://github.com/Frankcastleauditor)
-- **Safe Solana Builder**: [github.com/Frankcastleauditor/safe-solana-builder](https://github.com/Frankcastleauditor/safe-solana-builder)
-
----
-
-*Built by Frank Castle. Securing Solana, one researcher at a time.*
+- X: [@0xcastle_chain](https://x.com/0xcastle_chain)
+- GitHub: [Frankcastleauditor](https://github.com/Frankcastleauditor)
