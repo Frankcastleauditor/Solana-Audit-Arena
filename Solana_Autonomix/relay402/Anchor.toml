@@ -1,0 +1,23 @@
+[features]
+resolution = false
+skip-lint = false
+
+[programs.localnet]
+relay402 = "4czqgopa31kxZtirKekBDSysjcYDUHSCC9VTVeNr4qA5"
+
+[programs.devnet]
+relay402 = "4czqgopa31kxZtirKekBDSysjcYDUHSCC9VTVeNr4qA5"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "npx ts-mocha -p ./tsconfig.json -t 1000000 'tests/**/*.ts'"
+
+[test]
+upgradeable = true
+startup_wait = 10000

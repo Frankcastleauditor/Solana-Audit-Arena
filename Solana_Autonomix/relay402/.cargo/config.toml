@@ -1,0 +1,4 @@
+# Keep dependency resolution compatible with the Solana platform-tools
+# toolchain (rustc 1.84), which cannot build edition 2024 crates.
+[resolver]
+incompatible-rust-versions = "fallback"

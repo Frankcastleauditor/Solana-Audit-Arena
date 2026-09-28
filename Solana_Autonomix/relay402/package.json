@@ -1,0 +1,37 @@
+{
+  "name": "relay402",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Agent registry, x402 escrow payments and reputation on Solana (program + facilitator + agent server + client)",
+  "license": "MIT",
+  "scripts": {
+    "setup": "tsx offchain/scripts/setup.ts",
+    "facilitator": "tsx offchain/facilitator/index.ts",
+    "agent": "tsx offchain/agent-server/index.ts",
+    "client:call": "tsx offchain/client/call.ts",
+    "client:feedback": "tsx offchain/client/feedback.ts",
+    "client:refund": "tsx offchain/client/refund.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "anchor test"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "0.31.1",
+    "@solana/spl-token": "0.4.13",
+    "@solana/web3.js": "1.98.2",
+    "bs58": "6.0.0",
+    "dotenv": "16.5.0",
+    "express": "4.21.2",
+    "tweetnacl": "1.0.3"
+  },
+  "devDependencies": {
+    "@types/chai": "4.3.20",
+    "@types/express": "4.17.23",
+    "@types/mocha": "10.0.10",
+    "@types/node": "22.15.30",
+    "chai": "4.5.0",
+    "mocha": "10.8.2",
+    "ts-mocha": "10.1.0",
+    "tsx": "4.19.4",
+    "typescript": "5.8.3"
+  }
+}
