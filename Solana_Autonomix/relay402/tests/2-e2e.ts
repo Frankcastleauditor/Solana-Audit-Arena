@@ -355,7 +355,7 @@ describe("relay402: end to end (client -> agent server -> facilitator -> chain)"
 
     it("rejects tampered requirements", async () => {
       expect((await verify({ ...reqs, maxAmountRequired: (PRICE + 1n).toString() })).invalidReason).to.equal(
-        "insufficient_amount",
+        "amount_mismatch",
       );
       expect((await verify({ ...reqs, asset: attacker.publicKey.toBase58() })).invalidReason).to.equal(
         "invalid_asset",
@@ -382,6 +382,32 @@ describe("relay402: end to end (client -> agent server -> facilitator -> chain)"
       p.payload.receipt = treasury.toBase58();
       const out = await verify(reqs, p);
       expect(out.isValid).to.equal(false);
+    });
+
+    it("POC M-01: rejects a quote lower than the escrowed receipt amount", async () => {
+      const escrowedAmount = BigInt(reqs.maxAmountRequired);
+      const tampered = {
+        ...reqs,
+        maxAmountRequired: (escrowedAmount - 1n).toString(),
+      };
+      const out = await verify(tampered);
+
+      expect(tampered.maxAmountRequired).to.equal((escrowedAmount - 1n).toString());
+      expect(out.isValid, out.invalidReason).to.equal(false);
+      expect(out.invalidReason).to.equal("amount_mismatch");
+    });
+
+    it("POC M-01: rejects a quote higher than the escrowed receipt amount", async () => {
+      const escrowedAmount = BigInt(reqs.maxAmountRequired);
+      const tampered = {
+        ...reqs,
+        maxAmountRequired: (escrowedAmount + 1n).toString(),
+      };
+      const out = await verify(tampered);
+
+      expect(tampered.maxAmountRequired).to.equal((escrowedAmount + 1n).toString());
+      expect(out.isValid, out.invalidReason).to.equal(false);
+      expect(out.invalidReason).to.equal("amount_mismatch");
     });
   });
 

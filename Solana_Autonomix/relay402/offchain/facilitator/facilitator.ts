@@ -240,8 +240,8 @@ export class Facilitator {
     );
     if (!canonical.equals(receiptKey)) return no("receipt_address_mismatch");
     if (!isPending(receipt)) return no("receipt_not_pending");
-    if (BigInt(receipt.amount.toString()) < BigInt(req.maxAmountRequired)) {
-      return no("insufficient_amount");
+    if (BigInt(receipt.amount.toString()) !== BigInt(req.maxAmountRequired)) {
+      return no("amount_mismatch");
     }
     const remaining = BigInt(receipt.expiresAt.toString()) - BigInt(this.now());
     if (remaining < BigInt(minRemainingSecs)) return no("receipt_expires_too_soon");
